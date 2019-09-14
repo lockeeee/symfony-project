@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ user.name }} {{ user.surname }}{%  endblock %}
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">{{ user.name }} {{ user.surname }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('list') }}">Lista użytkowników</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="{{ path('search') }}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+        </div>
+    </nav><br />
+    {% include "flash.html.twig" %}
+    <center>
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 25rem;">
+            <div class="card-body">
+                <h3 class="card-title">{{ user.name }} {{ user.surname }}</h3>
+                <p class="card-text">Adres e-mail: {{ user.mail }}<br />Numer telefonu: {{ user.pnumber }}</p>
+                <div class="btn-group" role="group" aria-label="Third group">
+                    <a href="{{ path('edit_user', {id: user.id}) }}" class="btn btn-outline-info">Edytuj</a>
+                </div>
+                <a href="{{ path('delete_user', {id: user.id}) }}" class="btn btn-outline-info">Usuń</a>
+            </div>
+        </div>
+    </center>
+
+{% endblock %}

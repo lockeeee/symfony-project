@@ -1,0 +1,90 @@
+{% extends "base.html.twig" %}
+{% block title %} Książka adresowa {%  endblock %}
+{%  block body %}
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('address_list') }}">Książka adresowa</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('add_address') }}">Dodaj adres</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="{{ path('search_address') }}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+        </div>
+    </nav><br />
+    {% include "flash.html.twig" %}
+    <center>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <form action="{{ path('list') }}">
+            <button type="sumbit" class="btn btn-outline-info">Lista użytkowników</button>
+            </form>
+        </div>
+    </center>
+    <br />
+
+    <center>
+        <table class="table table-bordered shadow-sm p-3 mb-5 bg-white rounded" id="list">
+            <thead>
+                <tr>
+                    <th scope="col">Nr</th>
+                    <th scope="col">Mieszkaniec</th>
+                    <th scope="col">Ulica</th>
+                    <th scope="col">Kod pocztowy</th>
+                    <th scope="col">Miasto</th>
+                    <th scope="col">Kraj</th>
+                    <th scope="col"><center>Edytuj</center></th>
+                    <th scope="col"><center>Usuń</center></th>
+                    <th scope="col"><center>Przypisz mieszkańca</center></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for address in address %}
+                    <tr>
+                        <th scope="col">
+                            {{ address.id }}
+                        </th>
+                        <td>
+                            {{ address.user.name }} {{ address.user.surname }}
+                        </td>
+                        <td>
+                            {{ address.street }}
+                        </td>
+                        <td>
+                            {{ address.postnumber }}
+                        </td>
+                        <td>
+                            {{ address.city }}
+                        </td>
+                        <td>
+                            {{ address.country }}
+                        </td>
+                        <td>
+                            <center><a href='{{ path('edit_address', {id: address.id}) }}' class="btn btn-outline-info btn-sm"
+                                       role="button" aria-disabled="true">Edytuj</a></center>
+                        </td>
+                        <td>
+                            <center><a href='{{ path('delete_address', {id: address.id}) }}' class="btn btn-outline-info btn-sm"
+                                       role="button" aria-disabled="true">Usuń</a></center>
+                        </td>
+                        <td>
+                            <center><a href='{{ path('assign_user', {id: address.id}) }}' class="btn btn-outline-info btn-sm"
+                                       role="button" aria-disabled="true">Przypisz</a></center>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+{% endblock %}

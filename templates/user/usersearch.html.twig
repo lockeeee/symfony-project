@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block title %} Wyszukiwanie zaawansowane {%  endblock %}
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">Dodaj użytkownika</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('list') }}">Lista użytkowników</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="{{ path('search') }}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+        </div>
+    </nav><br />
+    {% include "flash.html.twig" %}
+
+
+
+{% endblock %}

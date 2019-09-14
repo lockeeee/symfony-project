@@ -1,0 +1,92 @@
+{% block css %}
+{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('list') }}">Lista użytkowników</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('address_list') }}">Książka adresowa</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-3">
+            <li>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerUser">
+                    Zarejestruj
+                </button>
+
+                <div class="modal fade" id="registerUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Stwórz nowego użytkownika</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#" method="post">
+                                    <input type='text' class="form-control" name='name' maxlength=30
+                                           placeholder="Podaj imię..."/><br />
+                                    <input type='text' class="form-control" name='surname' maxlength=50
+                                           placeholder="Podaj nazwisko..."/><br />
+                                    <input type='text' class="form-control" name='mail' maxlength=50
+                                           placeholder="Podaj maila..."/><br />
+                                    <input type='text' class="form-control" name='login' maxlength=50
+                                           placeholder="Podaj login..."/><br />
+                                    <input type='password' class="form-control" name='password' maxlength=50
+                                           placeholder="Podaj hasło..."/><br />
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-info" data-dismiss="modal">Wróć</button>
+                                        <button type="submit" class="btn btn-info">Zarejestruj</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-3">
+            <li>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#logUser">
+                    Zaloguj
+                </button>
+
+                <div class="modal fade" id="logUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Podaj login i hasło</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#" method="post">
+                                    <input type='text' class="form-control" name='name' maxlength=30
+                                           placeholder="Login..."/><br />
+                                    <input type='password' class="form-control" name='surname' maxlength=50
+                                           placeholder="Hasło..."/><br />
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-info" data-dismiss="modal">Wróć</button>
+                                        <button type="submit" class="btn btn-info">Zaloguj</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

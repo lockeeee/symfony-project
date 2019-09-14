@@ -1,0 +1,25 @@
+{% block css %}
+{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('address_list') }}">Książka adresowa</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('add_address') }}">Dodaj adres</a>
+            </li>
+        </ul>
+        {% include "aaddresssearch.html.twig" %}
+        <form class="form-inline my-2 my-lg-0" action="{{ path('search_address') }}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+        </form>
+    </div>
+</nav><br />

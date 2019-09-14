@@ -1,0 +1,95 @@
+{% extends "base.html.twig" %}
+{% block title %} Dodaj użytkownika {% endblock %}
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">Dodaj użytkownika</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('list') }}">Lista użytkowników</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="{{ path('search') }}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+        </div>
+    </nav><br />
+    {% include "flash.html.twig" %}
+        <center><div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 40rem;">
+            <form action="{{ path('add_user') }}" method="post">
+
+                <br /><h3 class="card-title">Dodaj nowego użytkownika</h3><br />
+
+                <div class="form-row">
+                    <div class="col" style="margin: 15px 15px 0px 15px;">
+                        <input type='text' class="form-control" name='name' maxlength=30 placeholder="Podaj imię..."/>
+                    </div>
+                    <div class="col" style="margin: 15px 15px 0px 0px;">
+                        <input type='text' class="form-control" name='surname' maxlength=50 placeholder="Podaj nazwisko..."/>
+                    </div>
+                </div><br />
+                <div class="form-row">
+                    <div class="col" style="margin: 15px 15px 0px 15px;">
+                        <input type='text' class="form-control" name='mail' placeholder="Podaj adres mailowy..."/>
+                    </div>
+                    <div class="col" style="margin: 15px 15px 0px 0px;">
+                        <input type='tel' class="form-control" name='pnumber' placeholder="Podaj numer telefonu..."/>
+                    </div>
+                </div><br />
+                <center><input class="btn btn-outline-info" type='submit' value='Dodaj'></center><br />
+
+            </form>
+        </div></center>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Dodaj nowego użytkownika</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center><div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 100%;">
+                            <form action="{{ path('add_user') }}" method="post">
+                                <input type='text' class="form-control" name='name' maxlength=30 placeholder="Podaj imię..."/><br />
+                                <input type='text' class="form-control" name='surname' maxlength=50 placeholder="Podaj nazwisko..."/><br />
+
+                                <div class="form-row">
+                                    <div class="col" style="margin: 15px 15px 0px 15px;">
+                                        <input type='text' class="form-control" name='mail' placeholder="Podaj adres mailowy..."/>
+                                    </div>
+                                    <div class="col" style="margin: 15px 15px 0px 0px;">
+                                        <input type='tel' class="form-control" name='pnumber' placeholder="Podaj numer telefonu..."/>
+                                    </div>
+                                </div><br />
+                                <center><input class="btn btn-outline-info" type='submit' value='Dodaj'></center><br />
+
+                            </form>
+                        </div></center>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

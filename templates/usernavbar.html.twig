@@ -1,0 +1,60 @@
+{% block css %}
+{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <button type="button" class="btn nav-item active" style="color: whitesmoke;">
+                    <a href="{{ path('list') }}" class="" style="color: whitesmoke; cursor: default; text-decoration: none;">Lista użytkowników</a>
+                </button>
+            </li>
+            <li class="nav-item active">
+                <ul class="navbar-nav mr-3">
+                    <li>
+                        <button type="button" class="btn nav-item active" style="color: whitesmoke;" data-toggle="modal" data-target="#addUserModal">
+                            Dodaj użytkownika
+                        </button>
+
+                        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                             aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Dodaj nowego użytkownika</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ path('add_user') }}" method="post">
+                                            <input type='text' class="form-control" name='name' maxlength=30 placeholder="Podaj imię..."/><br />
+                                            <input type='text' class="form-control" name='surname' maxlength=50 placeholder="Podaj nazwisko..."/><br/>
+                                            <input type='text' class="form-control" name='mail' placeholder="Podaj adres mailowy..."/><br />
+                                            <input type='tel' class="form-control" name='pnumber' placeholder="Podaj numer telefonu..."/><br />
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-info" data-dismiss="modal">Wróć</button>
+                                                <button type="sumbit" class="btn btn-info">Dodaj</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        {% include "ausersearch.html.twig" %}
+
+        <form class="form-inline my-2 my-lg-0" action="{{ path('search') }}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+        </form>
+    </div>
+</nav><br />
