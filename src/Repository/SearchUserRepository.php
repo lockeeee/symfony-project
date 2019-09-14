@@ -38,14 +38,11 @@ class SearchUserRepository implements SearchUserInterface
         $parameters = [];
         $conditions = [];
 
-        if(!empty($criteria['name'])) {
-            $conditions[] = "name LIKE CONCAT(?, '%')";
-            $parameters[] = $criteria['name'];
-        }
-
-        if(!empty($criteria['surname'])) {
-            $conditions[] = "surname LIKE CONCAT(?, '%')";
-            $parameters[] = $criteria['surname'];
+        foreach ($criteria as $key => $value) {
+            if(!empty($value)) {
+                $conditions[] = " $key LIKE CONCAT(?, '%')";
+                $parameters[] = $value;
+            }
         }
 
         if(!empty($conditions)) {

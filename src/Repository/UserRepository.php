@@ -46,7 +46,7 @@ class UserRepository
         if (empty($userData)) {
             return NULL;
         }
-        $user = new User($userData['ID'], $userData['name'], $userData['surname'], $userData['mail'], $userData['pnumber']);
+        $user = new User($userData['id'], $userData['name'], $userData['surname'], $userData['mail'], $userData['pnumber']);
         return $user;
     }
 

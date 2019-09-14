@@ -67,7 +67,7 @@ class AddressRepository
             return NULL;
         }
 
-        $user = new Address($addressData['ID'], $addressData['user_id'], $addressData['street'],
+        $user = new Address($addressData['id'], $addressData['user_id'], $addressData['street'],
             $addressData['postnumber'], $addressData['city'], $addressData['country'], NULL);
 
         return $user;

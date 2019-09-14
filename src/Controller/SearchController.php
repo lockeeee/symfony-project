@@ -57,9 +57,22 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route("/advanced-user-search", name="asearch_user")
+     * @param Request $request
+     * @param SearchService $searchService
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/advanced-address-search-result", name="asearch_address_result")
      */
+
+    public function advancedAddressSearch(Request $request, SearchService $searchService) {
+
+        $criteria = [
+            'street' => $request->get('street'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
+        ];
+
+        return $this->render('user/addresses.html.twig', ['address' => $searchService->advancedAddressSearch($criteria)]);
+    }
 
 
 }

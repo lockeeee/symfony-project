@@ -148,7 +148,7 @@ class AddressController extends AbstractController
                 $address->setUserId($user->getId());
 
                 $addressService->updateAddress($address);
-                $this->addFlash('success', 'Udało się przypisać mieszkańća!');
+                $this->addFlash('success', 'Udało się przypisać mieszkańca!');
 
                 return $this->redirectToRoute('address_list');
 

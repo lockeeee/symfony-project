@@ -2,34 +2,14 @@
 {% block title %} Edytuj {% endblock %}
 {% block body %}
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-        <a class="navbar-brand disabled" href="{{ path('homepage') }}">Projekt</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link">Edytuj adres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('address_list') }}">Książka adresowa</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" action="{{ path('search_address') }}">
-                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
-            </form>
-        </div>
-    </nav><br />
+    {% include "addressnavbar.html.twig" %}
     {% include "flash.html.twig" %}
-    <center><div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 40rem;">
+    <center>
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 40rem;">
             <form action="{{ path('update_address') }}" method="post">
 
                 <br /><h3 class="card-title">Edytuj adres</h3><br />
+
                 <input type='hidden' name='id' value='{{ user.ID }}'>
                 <div class="form-row">
                     <div class="col" style="margin: 15px 15px 0px 15px;">
@@ -59,8 +39,11 @@
                         <input type='tel' class="form-control" name='country' value="{{ user.country }}"/>
                     </div>
                 </div><br />
-                <center><input class="btn btn-outline-info" type='submit' value='Edytuj'></center><br />
-
+                <center>
+                    <input class="btn btn-outline-info" type='submit' value='Edytuj'>
+                </center><br />
             </form>
-        </div></center>
+        </div>
+    </center>
+
 {% endblock %}
