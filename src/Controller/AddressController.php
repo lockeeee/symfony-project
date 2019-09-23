@@ -63,7 +63,7 @@ class AddressController extends AbstractController
 
         }
 
-        return $this->render('user/addaddress.html.twig', ['records' => $userService->showUsers()]);
+        return $this->render('user/addaddress.html.twig', ['records' => $userService->showUsersForAssign()]);
     }
 
     /**
