@@ -26,9 +26,17 @@ class AddressController extends AbstractController
      */
 
 
-    public function indexAction(AddressService $addressService) {
+    public function indexAction(AddressService $addressService, Request $request) {
 
-        return $this->render('user/addresses.html.twig', ['address' => $addressService->showAddresses()]);
+        if(!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect("/");
+        }
+
+        $sort = $request->get('sort');
+
+        $sortOrder = $request->get('order', 'asc');
+
+        return $this->render('user/addresses.html.twig', ['address' => $addressService->showAddresses($sort, $sortOrder)]);
     }
 
     /**
@@ -126,7 +134,7 @@ class AddressController extends AbstractController
 
     public function showAction(UserService $userService, $id) {
 
-        return $this->render('user/assign.html.twig', ['records' => $userService->showUsers(), 'address_id' => $id]);
+        return $this->render('user/assign.html.twig', ['records' => $userService->showUsersForAssign(), 'address_id' => $id]);
 
     }
 

@@ -9,10 +9,13 @@
             <div class="card-body">
                 <h3 class="card-title">{{ user.name }} {{ user.surname }}</h3>
                 <p class="card-text">Adres e-mail: {{ user.mail }}<br />Numer telefonu: {{ user.pnumber }}</p>
+                {% if is_granted('ROLE_ADMIN') %}
                 <div class="btn-group" role="group" aria-label="Third group">
                     <a href="{{ path('edit_user', {id: user.id}) }}" class="btn btn-outline-info">Edytuj</a>
                     <a href="{{ path('delete_user', {id: user.id}) }}" class="btn btn-outline-info">Usuń</a>
-                </div>
+                </div><br /><br />
+                {% endif %}
+                <a href="{{ path('list') }}" class="btn btn-outline-info">Wróć</a>
             </div>
         </div>
     </center>

@@ -33,7 +33,12 @@ class UserService
         $this->userRepository->create($user);
     }
 
-    public function showUsers() {
+    public function showUsers($sort, $sortOrder) {
+
+        return $this->userRepository->findAllSorted($sort, $sortOrder);
+    }
+
+    public function showUsersForAssign() {
 
         return $this->userRepository->findAll();
     }

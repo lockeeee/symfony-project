@@ -55,6 +55,10 @@
         <form class="form-inline my-2 my-lg-0" action="{{ path('search') }}">
             <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Search" name="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
-        </form>
+        </form>&nbsp;&nbsp;&nbsp;
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a href="/logout" class="btn btn-success">Wyloguj</a>
+        {% endif %}
     </div>
 </nav><br />

@@ -62,3 +62,5 @@ class ShowAddressesCommand extends Command
     }
 
 }
+
+?>

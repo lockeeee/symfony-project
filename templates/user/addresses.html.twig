@@ -16,12 +16,19 @@
         <table class="table table-bordered shadow-sm p-3 mb-5 bg-white rounded" id="list">
             <thead>
                 <tr>
-                    <th scope="col">Nr</th>
-                    <th scope="col">Mieszkaniec</th>
-                    <th scope="col">Ulica</th>
-                    <th scope="col">Kod pocztowy</th>
-                    <th scope="col">Miasto</th>
-                    <th scope="col">Kraj</th>
+                    <th scope="col">Nr<a href="{{ path('address_list', {sort: 'id', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Mieszkaniec<a href="{{ path('address_list', {sort: 'name', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Ulica<a href="{{ path('address_list', {sort: 'street', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Kod pocztowy<a href="{{ path('address_list', {sort: 'postnumber', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Miasto<a href="{{ path('address_list', {sort: 'city', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Kraj<a href="{{ path('address_list', {sort: 'country', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <th scope="col">
                         <center>Edytuj</center>
                     </th>
@@ -31,6 +38,7 @@
                     <th scope="col">
                         <center>Przypisz mieszkańca</center>
                     </th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +62,7 @@
                         <td>
                             {{ address.country }}
                         </td>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <td>
                             <center>
                                 <a href='{{ path('edit_address', {id: address.id}) }}' class="btn btn-outline-info btn-sm"
@@ -72,6 +81,7 @@
                                        role="button" aria-disabled="true">Przypisz</a>
                             </center>
                         </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>

@@ -33,6 +33,25 @@ class UserRepository
         return $records;
     }
 
+    public function findAllSorted($sort, $direction = 'asc') {
+        $sql = "SELECT id, name, surname, mail, pnumber from users";
+
+        if(in_array($sort, ['id', 'name', 'surname', 'mail', 'pnumber']) && in_array($direction, ['asc', 'desc'])) {
+
+            $sql .= " ORDER BY $sort $direction";
+        }
+
+        $stmt = $this->connection->query($sql);
+        $records = [];
+
+        foreach ($stmt->fetchAll() as $userData) {
+            $records[] = new \App\Model\User($userData['id'], $userData['name'], $userData['surname'], $userData['mail'],
+                $userData['pnumber']);
+        }
+
+        return $records;
+    }
+
     public function find($id) {
         $sql = "SELECT * from users WHERE id = ?";
 

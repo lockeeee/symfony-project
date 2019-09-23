@@ -33,6 +33,10 @@ class SearchService
         return $this->searchUserInterface->advancedFindUser($criteria);
     }
 
+    public function advancedAddressSearch(array $criteria) {
+        return $this->searchAddressInterface->advancedFindAddress($criteria);
+    }
+
     public function __construct(SearchUserInterface $searchUserInterface, SearchAddressInterface $searchAddressInterface)
     {
         $this->searchUserInterface = $searchUserInterface;

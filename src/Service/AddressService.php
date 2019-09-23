@@ -33,9 +33,9 @@ class AddressService
         $this->addressRepository->create($address);
     }
 
-    public function showAddresses() {
+    public function showAddresses($sort, $sortOrder) {
 
-        return $this->addressRepository->findAddresses();
+        return $this->addressRepository->findSortedAddresses($sort, $sortOrder);
     }
 
     public function deleteAddress($id) {

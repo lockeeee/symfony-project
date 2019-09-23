@@ -21,9 +21,17 @@ class UserController extends AbstractController
      * @param UserService $userService
      * @Route("/user-list", name="list")
      */
-    public function indexAction(UserService $userService) {
+    public function indexAction(UserService $userService, Request $request) {
 
-        return $this->render('user/listing.html.twig', ['users' => $userService->showUsers()]);
+        if(!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect("/");
+        }
+
+        $sort = $request->get('sort');
+
+        $sortOrder = $request->get('order', 'asc');
+
+        return $this->render('user/listing.html.twig', ['users' => $userService->showUsers($sort, $sortOrder)]);
     }
 
     /**
@@ -38,7 +46,8 @@ class UserController extends AbstractController
 
         if($request->getMethod() == 'POST') {
             try {
-                $user = new User(NULL, $request->get('name'), $request->get('surname'), $request->get('mail'), $request->get('pnumber'));
+                $user = new User(NULL, $request->get('name'), $request->get('surname'),
+                    $request->get('mail'), $request->get('pnumber'));
                 $userService->createUser($user);
                 $this->addFlash('success', 'Użytkownik został dodany!');
                 return $this->redirectToRoute('list');

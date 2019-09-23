@@ -18,10 +18,11 @@
         </ul>
         <ul class="navbar-nav mr-3">
             <li>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerUser">
-                    Zarejestruj
-                </button>
-
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') == false %}
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerUser">
+                        Zarejestruj
+                    </button>
+                {% endif %}
                 <div class="modal fade" id="registerUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -33,7 +34,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="post">
+                                <form action="{{ path('register') }}" method="post">
                                     <input type='text' class="form-control" name='name' maxlength=30
                                            placeholder="Podaj imię..."/><br />
                                     <input type='text' class="form-control" name='surname' maxlength=50
@@ -57,10 +58,11 @@
         </ul>
         <ul class="navbar-nav mr-3">
             <li>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#logUser">
-                    Zaloguj
-                </button>
-
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') == false %}
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#logUser">
+                        Zaloguj
+                    </button>
+                {% endif %}
                 <div class="modal fade" id="logUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
                      aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -72,7 +74,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="post">
+                                <form action="{{ path('app_login') }}" method="post">
                                     <input type='text' class="form-control" name='login' maxlength=30
                                            placeholder="Login..."/><br />
                                     <input type='password' class="form-control" name='password' maxlength=50
@@ -88,5 +90,8 @@
                 </div>
             </li>
         </ul>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a href="/logout" class="btn btn-success">Wyloguj</a>
+        {% endif %}
     </div>
 </nav>

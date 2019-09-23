@@ -16,13 +16,20 @@
         <table class="table table-bordered shadow-sm p-3 mb-5 bg-white rounded" id="list">
             <thead>
                 <tr>
-                    <th scope="col">Nr</th>
-                    <th scope="col">Imię</th>
-                    <th scope="col">Nazwisko</th>
-                    <th scope="col">Mail</th>
-                    <th scope="col">Telefon</th>
+                    <th scope="col">Nr<a href="{{ path('list', {sort: 'id', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Imię<a href="{{ path('list', {sort: 'name', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Nazwisko<a href="{{ path('list', {sort: 'surname', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Mail<a href="{{ path('list', {sort: 'mail', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    <th scope="col">Telefon<a href="{{ path('list', {sort: 'pnumber', order: app.request.query.get('order') == 'asc'?'desc':'asc'}) }}">
+                            <img src="/sort.png" style="float: right;" /></a></th>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <th scope="col"><center>Edytuj</center></th>
                     <th scope="col"><center>Usuń</center></th>
+                    {% endif %}
                     <th scope="col"><center>Pokaż</center></th>
                 </tr>
             </thead>
@@ -34,6 +41,7 @@
                         <td>{{ user.surname }}</td>
                         <td>{{ user.mail }}</td>
                         <td>{{ user.pnumber }}</td>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <td><center>
                                 <a href='{{ path('edit_user', {id: user.id}) }}' class="btn btn-outline-info btn-sm"
                                        role="button" aria-disabled="true">Edytuj</a>
@@ -44,6 +52,7 @@
                                        role="button" aria-disabled="true">Usuń</a>
                             </center>
                         </td>
+                        {% endif %}
                         <td><center>
                                 <a href="{{ path('show_user', {id: user.id}) }}" class="btn btn-outline-info btn-sm"
                                        role="button" aria-disabled="true">{{ user.name }} {{ user.surname }}</a>
