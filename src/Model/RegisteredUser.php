@@ -1,34 +1,64 @@
 <?php
 
-
 namespace App\Model;
-
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class RegisteredUser implements UserInterface
 {
+    /**
+     * @var int
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var string
+     */
     private $surname;
+
+    /**
+     * @var string
+     */
     private $mail;
+
+    /**
+     * @var string
+     */
     private $login;
+
+    /**
+     * @var string
+     */
     private $password;
+
+    /**
+     * @var array
+     */
     private $roles;
 
     /**
-     * RegisteredUser constructor.
      * @param $id
-     * @param $name
-     * @param $surname
-     * @param $mail
-     * @param $login
-     * @param $password
-     * @param $roles
+     * @param string $name
+     * @param string $surname
+     * @param string $mail
+     * @param string $login
+     * @param string $password
+     * @param array  $roles
      */
-
-    public function __construct($id, $name, $surname, $mail, $login, $password, $roles = [])
-    {
+    public function __construct(
+        $id,
+        string $name,
+        string $surname,
+        string $mail,
+        string $login,
+        string $password,
+        array $roles = []
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->surname = $surname;
@@ -39,97 +69,97 @@ class RegisteredUser implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id): void
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
-    public function setName($name): void
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSurname()
+    public function getSurname(): string
     {
         return $this->surname;
     }
 
     /**
-     * @param mixed $surname
+     * @param string $surname
      */
-    public function setSurname($surname): void
+    public function setSurname(string $surname)
     {
         $this->surname = $surname;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMail()
+    public function getMail(): string
     {
         return $this->mail;
     }
 
     /**
-     * @param mixed $mail
+     * @param string $mail
      */
-    public function setMail($mail): void
+    public function setMail(string $mail)
     {
         $this->mail = $mail;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLogin()
+    public function getLogin(): string
     {
         return $this->login;
     }
 
     /**
-     * @param mixed $login
+     * @param string $login
      */
-    public function setLogin($login): void
+    public function setLogin(string $login)
     {
         $this->login = $login;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      */
-    public function setPassword($password): void
+    public function setPassword($password)
     {
         $this->password = $password;
     }

@@ -1,16 +1,14 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Model\User;
 use App\Repository\UserRepository;
 use App\Validator\UserValidator;
+use Doctrine\DBAL\DBALException;
 
 class UserService
 {
-
     /**
      * @var UserValidator
      */
@@ -20,41 +18,77 @@ class UserService
      */
     private $userRepository;
 
+    /**
+     * @param UserValidator  $userValidator
+     * @param UserRepository $userRepository
+     */
     public function __construct(UserValidator $userValidator, UserRepository $userRepository)
     {
-
         $this->userValidator = $userValidator;
         $this->userRepository = $userRepository;
     }
 
-    public function createUser(User $user) {
-
+    /**
+     * @param User $user
+     *
+     * @throws DBALException
+     */
+    public function createUser(User $user)
+    {
         $this->userValidator->validate($user);
         $this->userRepository->create($user);
     }
 
-    public function showUsers($sort, $sortOrder) {
-
+    /**
+     * @param $sort
+     * @param $sortOrder
+     *
+     * @return array
+     * @throws DBALException
+     */
+    public function showUsers($sort, $sortOrder): array
+    {
         return $this->userRepository->findAllSorted($sort, $sortOrder);
     }
 
-    public function showUsersForAssign() {
-
+    /**
+     * @return array
+     * @throws DBALException
+     */
+    public function showUsersForAssign(): array
+    {
         return $this->userRepository->findAll();
     }
 
-    public function userData($id) {
-
+    /**
+     * @param int $id
+     *
+     * @return User|null
+     * @throws DBALException
+     */
+    public function userData(int $id)
+    {
         return $this->userRepository->find($id);
     }
 
-    public function deleteUser($id) {
-
+    /**
+     * @param int $id
+     *
+     * @return bool
+     * @throws DBALException
+     */
+    public function deleteUser(int $id)
+    {
         return $this->userRepository->delete($id);
     }
 
-    public function updateUser(User $user) {
-
+    /**
+     * @param User $user
+     *
+     * @throws DBALException
+     */
+    public function updateUser(User $user)
+    {
         $this->userValidator->validate($user);
         $this->userRepository->update($user);
     }

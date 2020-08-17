@@ -1,30 +1,62 @@
 <?php
 
-
 namespace App\Model;
-
 
 class Address
 {
+    /**
+     * @var int
+     */
     private $id;
+
+    /**
+     * @var int
+     */
     private $user_id;
+
+    /**
+     * @var string
+     */
     private $street;
+
+    /**
+     * @var string
+     */
     private $postnumber;
+
+    /**
+     * @var string
+     */
     private $city;
+
+    /**
+     * @var string
+     */
     private $country;
+
+    /**
+     * @var User
+     */
     private $user;
 
     /**
-     * Address constructor.
      * @param $id
-     * @param $user_id
-     * @param $street
-     * @param $postnumber
-     * @param $city
-     * @param $country
+     * @param int    $user_id
+     * @param string $street
+     * @param string $postnumber
+     * @param string $city
+     * @param string $country
+     * @param $user
      */
-    public function __construct($id, $user_id, $street, $postnumber, $city, $country, $user)
-    {
+    public function __construct(
+        $id,
+        int $user_id,
+        string $street,
+        string $postnumber,
+        string $city,
+        string $country,
+        $user
+    ) {
         $this->id = $id;
         $this->user_id = $user_id;
         $this->street = $street;
@@ -35,111 +67,111 @@ class Address
     }
 
     /**
-     * @return mixed
+     * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
 
     /**
-     * @param mixed $user
+     * @param User $user
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $this->user = $user;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getUserId()
+    public function getUserId(): int
     {
         return $this->user_id;
     }
 
     /**
-     * @param mixed $user_id
+     * @param int $user_id
      */
-    public function setUserId($user_id)
+    public function setUserId(int $user_id)
     {
         $this->user_id = $user_id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getStreet()
+    public function getStreet(): string
     {
         return $this->street;
     }
 
     /**
-     * @param mixed $street
+     * @param string $street
      */
-    public function setStreet($street)
+    public function setStreet(string $street)
     {
         $this->street = $street;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPostnumber()
+    public function getPostnumber(): string
     {
         return $this->postnumber;
     }
 
     /**
-     * @param mixed $postnumber
+     * @param string $postnumber
      */
-    public function setPostnumber($postnumber)
+    public function setPostnumber(string $postnumber)
     {
         $this->postnumber = $postnumber;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCity()
+    public function getCity(): string
     {
         return $this->city;
     }
 
     /**
-     * @param mixed $city
+     * @param string $city
      */
-    public function setCity($city)
+    public function setCity(string $city)
     {
         $this->city = $city;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
 
     /**
-     * @param mixed $country
+     * @param string $country
      */
     public function setCountry($country)
     {

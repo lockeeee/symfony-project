@@ -1,26 +1,42 @@
 <?php
 
-
 namespace App\Model;
-
 
 class User
 {
+    /**
+     * @var int
+     */
     private $id;
+
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var string
+     */
     private $surname;
+
+    /**
+     * @var string
+     */
     private $mail;
+
+    /**
+     * @var int
+     */
     private $pnumber;
 
     /**
-     * User constructor.
      * @param $id
-     * @param $name
-     * @param $surname
-     * @param $mail
-     * @param $pnumber
+     * @param string $name
+     * @param string $surname
+     * @param string $mail
+     * @param int    $pnumber
      */
-    public function __construct($id, $name, $surname, $mail, $pnumber)
+    public function __construct($id, string $name, string $surname, string $mail, int $pnumber)
     {
         $this->id = $id;
         $this->name = $name;
@@ -30,84 +46,83 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSurname()
+    public function getSurname(): string
     {
         return $this->surname;
     }
 
     /**
-     * @param mixed $surname
+     * @param string $surname
      */
-    public function setSurname($surname)
+    public function setSurname(string $surname)
     {
         $this->surname = $surname;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMail()
+    public function getMail(): string
     {
         return $this->mail;
     }
 
     /**
-     * @param mixed $mail
+     * @param string $mail
      */
-    public function setMail($mail)
+    public function setMail(string $mail)
     {
         $this->mail = $mail;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getPnumber()
+    public function getPnumber(): int
     {
         return $this->pnumber;
     }
 
     /**
-     * @param mixed $pnumber
+     * @param int $pnumber
      */
-    public function setPnumber($pnumber)
+    public function setPnumber(int $pnumber)
     {
         $this->pnumber = $pnumber;
     }
-
 }
 

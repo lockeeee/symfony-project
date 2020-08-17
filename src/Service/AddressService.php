@@ -1,55 +1,86 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Model\Address;
 use App\Repository\AddressRepository;
 use App\Validator\AddressValidator;
+use Doctrine\DBAL\DBALException;
 
 class AddressService
 {
-
     /**
      * @var AddressValidator
      */
     private $addressValidator;
+
     /**
      * @var AddressRepository
      */
     private $addressRepository;
 
+    /**
+     * @param AddressValidator  $addressValidator
+     * @param AddressRepository $addressRepository
+     */
     public function __construct(AddressValidator $addressValidator, AddressRepository $addressRepository)
     {
-
         $this->addressValidator = $addressValidator;
         $this->addressRepository = $addressRepository;
     }
 
-    public function createAddress(Address $address) {
-
+    /**
+     * @param Address $address
+     *
+     * @throws DBALException
+     */
+    public function createAddress(Address $address)
+    {
         $this->addressValidator->validate($address);
         $this->addressRepository->create($address);
     }
 
-    public function showAddresses($sort, $sortOrder) {
-
+    /**
+     * @param $sort
+     * @param $sortOrder
+     *
+     * @return array
+     * @throws DBALException
+     */
+    public function showAddresses($sort, $sortOrder): array
+    {
         return $this->addressRepository->findSortedAddresses($sort, $sortOrder);
     }
 
-    public function deleteAddress($id) {
-
+    /**
+     * @param int $id
+     *
+     * @return bool
+     * @throws DBALException
+     */
+    public function deleteAddress(int $id): bool
+    {
         return $this->addressRepository->delete($id);
     }
 
-    public function addressData($id) {
-
+    /**
+     * @param int $id
+     *
+     * @return Address|null
+     * @throws DBALException
+     */
+    public function addressData(int $id)
+    {
         return $this->addressRepository->find($id);
     }
 
-    public function updateAddress(Address $address) {
-
+    /**
+     * @param Address $address
+     *
+     * @throws DBALException
+     */
+    public function updateAddress(Address $address)
+    {
         $this->addressValidator->validate($address);
         $this->addressRepository->update($address);
     }

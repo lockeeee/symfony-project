@@ -1,21 +1,34 @@
 <?php
 
-
 namespace App\Repository;
 
-
+use App\Model\User;
 use App\Service\Search\SearchUserInterface;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 
 class SearchUserRepository implements SearchUserInterface
 {
-
     /**
      * @var Connection
      */
     private $connection;
 
-    public function findUser($search)
+    /**
+     * @param Connection $connection
+     */
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    /**
+     * @param $search
+     *
+     * @return array
+     * @throws DBALException
+     */
+    public function findUser($search): array
     {
         $sql = "SELECT id, name, surname, mail, pnumber from users WHERE name LIKE CONCAT(?, '%')";
         $stmt = $this->connection->prepare($sql);
@@ -23,29 +36,39 @@ class SearchUserRepository implements SearchUserInterface
         $records = [];
 
         foreach ($stmt->fetchAll() as $userData) {
-            $records[] = new \App\Model\User($userData['id'], $userData['name'], $userData['surname'], $userData['mail'],
-                $userData['pnumber']);
+            $records[] = new User(
+                $userData['id'],
+                $userData['name'],
+                $userData['surname'],
+                $userData['mail'],
+                $userData['pnumber']
+            );
         }
 
         return $records;
     }
 
-    public function advancedFindUser(array $criteria) {
-
+    /**
+     * @param array $criteria
+     *
+     * @return array
+     * @throws DBALException
+     */
+    public function advancedFindUser(array $criteria): array
+    {
         $sql = "SELECT id, name, surname, mail, pnumber from users ";
-//        $sql = "SELECT id, name, surname, mail, pnumber from users WHERE name LIKE CONCAT(?, '%') OR surname LIKE CONCAT(?, '%')";
 
         $parameters = [];
         $conditions = [];
 
         foreach ($criteria as $key => $value) {
-            if(!empty($value)) {
+            if (!empty($value)) {
                 $conditions[] = " $key LIKE CONCAT(?, '%')";
                 $parameters[] = $value;
             }
         }
 
-        if(!empty($conditions)) {
+        if (!empty($conditions)) {
             $sql .= "WHERE " . implode(' OR ', $conditions);
         }
 
@@ -55,17 +78,15 @@ class SearchUserRepository implements SearchUserInterface
         $records = [];
 
         foreach ($stmt->fetchAll() as $userData) {
-            $records[] = new \App\Model\User($userData['id'], $userData['name'], $userData['surname'], $userData['mail'],
-                $userData['pnumber']);
+            $records[] = new User(
+                $userData['id'],
+                $userData['name'],
+                $userData['surname'],
+                $userData['mail'],
+                $userData['pnumber']
+            );
         }
 
         return $records;
     }
-
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
-
-
 }

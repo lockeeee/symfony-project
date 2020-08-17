@@ -1,11 +1,10 @@
 <?php
 
-
 namespace App\Command\User;
-
 
 use App\Model\User;
 use App\Service\UserService;
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,11 +18,29 @@ class CreateUserCommand extends Command
      */
     private $userService;
 
+    /**
+     * @param UserService $userService
+     */
+    public function __construct(UserService $userService)
+    {
+        parent::__construct();
+        $this->userService = $userService;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function configure()
     {
         $this->setName('app:user:create');
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return int|void|null
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
@@ -43,14 +60,8 @@ class CreateUserCommand extends Command
             );
             $this->userService->createUser($user);
             $io->success('Dodano uzytkownika!');
-        } catch(\Exception $exception) {
+        } catch(Exception $exception) {
             $io->error($exception->getMessage());
         }
-    }
-
-    public function __construct(UserService $userService)
-    {
-        parent::__construct();
-        $this->userService = $userService;
     }
 }
